@@ -1,10 +1,7 @@
-﻿using System;
+﻿using OculusKiller.Utilities;
+using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
-using OculusKiller.Utilities;
 
 namespace OculusKiller.Core
 {

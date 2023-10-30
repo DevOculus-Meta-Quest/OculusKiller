@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OculusKiller.Utilities;
+using System;
 using System.Diagnostics;
 using System.Linq;
-using OculusKiller.Utilities;
 
 namespace OculusKiller.Core
 {

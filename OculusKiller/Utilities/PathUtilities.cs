@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Web.Script.Serialization;
-using OculusKiller.Utilities;
 
 namespace OculusKiller.Utilities
 {
