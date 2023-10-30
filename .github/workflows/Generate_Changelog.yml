@@ -1,24 +1,30 @@
 name: Generate Changelog
+
 on:
   push:
     tags:
-      - '*'
+      - 'v*' # This will only run the workflow when you push tags with a format like v1.0, v1.2.3, etc.
+  workflow_dispatch: # This allows for manual triggering of the workflow
 
 jobs:
   changelog:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GIT_ACTIONS }} # Using your PAT named GIT_ACTIONS
 
       - name: Generate changelog
         uses: charmixer/auto-changelog-action@v1
         with:
-          token: ${{ secrets.GIT_ACTIONS }}
+          token: ${{ secrets.GIT_ACTIONS }} # Using your PAT named GIT_ACTIONS
 
       - name: Commit and push changelog
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "Generate changelog"
+          git add CHANGELOG.md # Assuming the changelog is saved in the root as CHANGELOG.md
+          git commit -m "Generate changelog"
           git push
