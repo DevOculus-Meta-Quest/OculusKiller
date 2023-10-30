@@ -4,6 +4,11 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: true
 
 jobs:
   build:
@@ -39,6 +44,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GIT_ACTIONS }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: OculusKiller\OculusKiller\bin\x64\Release\OculusKiller.exe
-        asset_name: OculusKiller.exe
+        asset_path: OculusKiller\OculusKiller\bin\x64\Release\OculusDash.exe
+        asset_name: OculusDash.exe
         asset_content_type: application/vnd.microsoft.portable-executable
