@@ -1,55 +1,45 @@
-﻿using OculusKiller.Utilities;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using OculusKiller.Utilities;
 
 namespace OculusKiller.Core
 {
-    public static class VRServerMonitor
+    internal class VRServerMonitor
     {
-        public static void MonitorVRServer(string vrServerPath, string oculusPath)
+        public static async void MonitorVRServer(string vrServerPath, string oculusPath)
         {
-            if (string.IsNullOrEmpty(vrServerPath))
+            while (true) // Continuous monitoring
             {
-                ErrorLogger.LogError(new Exception("Invalid vrserver path."));
-                return;
-            }
-
-            var vrServerProcess = Process.GetProcessesByName("vrserver").FirstOrDefault(process => process.MainModule.FileName == vrServerPath);
-            if (vrServerProcess != null)
-            {
-                ErrorLogger.Log("Monitoring vrserver process.");
-                vrServerProcess.EnableRaisingEvents = true;
-
-                vrServerProcess.Exited += (sender, e) =>
+                try
                 {
-                    ErrorLogger.Log("vrserver process exited.");
-                    KillOculusServer(oculusPath);
-                };
+                    var vrServerProcess = Process.GetProcessesByName("vrserver")
+                        .FirstOrDefault(process => process.MainModule.FileName == vrServerPath);
 
-                ErrorLogger.Log($"vrserver process status: {vrServerProcess.Responding}");
-                ErrorLogger.Log($"vrserver process start time: {vrServerProcess.StartTime}");
-                ErrorLogger.Log($"vrserver process total processor time: {vrServerProcess.TotalProcessorTime}");
+                    if (vrServerProcess != null)
+                    {
+                        ErrorLogger.Log("Monitoring vrserver process.");
+                        vrServerProcess.WaitForExit(); // Wait for the process to exit
 
-                vrServerProcess.WaitForExit();
-            }
-            else
-            {
-                ErrorLogger.LogError(new Exception("vrserver process not found."));
-            }
-        }
+                        ErrorLogger.Log("vrserver process exited. Restarting...");
+                    }
+                    else
+                    {
+                        ErrorLogger.Log("vrserver process not found. Starting...");
+                    }
 
-        private static void KillOculusServer(string oculusPath)
-        {
-            var ovrServerProcess = Process.GetProcessesByName("OVRServer_x64").FirstOrDefault(process => process.MainModule.FileName == oculusPath);
-            if (ovrServerProcess != null)
-            {
-                ovrServerProcess.Kill();
-                ovrServerProcess.WaitForExit();
-            }
-            else
-            {
-                ErrorLogger.LogError(new Exception("Oculus runtime not found..."));
+                    // Restarting the SteamVR process
+                    ProcessUtilities.StartProcess(vrServerPath);
+
+                    // Waiting for a short duration before rechecking the process
+                    await Task.Delay(5000);
+                }
+                catch (Exception e)
+                {
+                    ErrorLogger.LogError(e);
+                    await Task.Delay(10000); // Wait longer if an error occurs
+                }
             }
         }
     }
