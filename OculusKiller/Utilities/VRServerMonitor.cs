@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using OculusKiller.Utilities;
 
 namespace OculusKiller.Core
 {
     internal class VRServerMonitor
     {
-        public static async void MonitorVRServer(string vrServerPath, string oculusPath)
+        private const int MaxRetries = 3; // Maximum number of consecutive restart attempts
+
+        public static void MonitorVRServer(string vrServerPath, string oculusPath)
         {
-            while (true) // Continuous monitoring
+            int retryCount = 0;
+
+            while (retryCount < MaxRetries) // Monitoring loop with retry limit
             {
                 try
                 {
@@ -31,16 +34,19 @@ namespace OculusKiller.Core
 
                     // Restarting the SteamVR process
                     ProcessUtilities.StartProcess(vrServerPath);
-
-                    // Waiting for a short duration before rechecking the process
-                    await Task.Delay(5000);
+                    retryCount++;
                 }
                 catch (Exception e)
                 {
                     ErrorLogger.LogError(e);
-                    await Task.Delay(10000); // Wait longer if an error occurs
+                    retryCount++;
                 }
             }
+
+            // After reaching the maximum retry limit, terminate SteamVR and Oculus Air Link
+            ErrorLogger.Log("Maximum retry limit reached. Terminating SteamVR and Oculus Air Link.");
+            ProcessUtilities.TerminateProcess("vrserver");
+            ProcessUtilities.TerminateProcess("OVRServer_x64");
         }
     }
 }

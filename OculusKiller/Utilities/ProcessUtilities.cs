@@ -27,5 +27,21 @@ namespace OculusKiller.Utilities
                 return null;
             }
         }
+
+        public static void TerminateProcess(string processName)
+        {
+            foreach (var process in Process.GetProcessesByName(processName))
+            {
+                try
+                {
+                    process.Kill();
+                    process.WaitForExit();
+                }
+                catch (Exception e)
+                {
+                    ErrorLogger.LogError(e);
+                }
+            }
+        }
     }
 }
