@@ -33,7 +33,13 @@ namespace OculusKiller.Core
                 ErrorLogger.Log($"Steam startup path: {startupPath}");
                 ErrorLogger.Log($"Steam VR server path: {vrServerPath}");
 
-                Process.Start(startupPath);
+                // Using ProcessUtilities to start the SteamVR process
+                Process steamProcess = ProcessUtilities.StartProcess(startupPath);
+                if (steamProcess == null)
+                {
+                    return;
+                }
+
                 ErrorLogger.Log("Started SteamVR using vrstartup.exe");
 
                 await Task.Delay(5000);
