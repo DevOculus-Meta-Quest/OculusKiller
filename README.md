@@ -35,7 +35,7 @@ This issue can occur when you do not have "File name extensions" enabled when re
 
 You can verify that you installed it succesfully if "OculusDash.exe.bak" is the "BAK File" type. And looks like the below screenshot.
 
-<img src="BlackScreenFix.png" width="627" height="444" />
+<img src="assets/images/BlackScreenFix.png" width="627" height="444" />
 
 ## OpenXR Games launch, but cannot be seen
 This is a very common issue, and has to do with OpenXR prefering the use of Oculus over SteamVR. The fix is very simple:
@@ -60,4 +60,4 @@ DISCLAIMER: This workaround may prevent some SteamVR games from launching, make 
 - Turn on "Autostart"
 - Turn on "Force Use SteamVR (Disable Oculus API [expiremental])"
 
-<img src="OVRSettingsFix.png" width="600" height="400" />
+<img src="assets/images/OVRSettingsFix.png" width="600" height="400" />
