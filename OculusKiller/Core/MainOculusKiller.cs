@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
-namespace OculusKiller
+namespace OculusKiller.Core
 {
-    public class Program
+    internal class MainOculusKiller
     {
         // Define the path for the log file
         private static string logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "OculusKiller", "logs.txt");
