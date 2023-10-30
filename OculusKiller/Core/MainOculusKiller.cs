@@ -11,8 +11,10 @@ namespace OculusKiller.Core
         {
             try
             {
+                // Logging the start of the application
                 ErrorLogger.Log("Application started.");
 
+                // Retrieving and validating the Oculus path
                 string oculusPath = PathUtilities.GetOculusPath();
                 if (string.IsNullOrEmpty(oculusPath))
                 {
@@ -21,6 +23,7 @@ namespace OculusKiller.Core
                 }
                 ErrorLogger.Log($"Oculus path: {oculusPath}");
 
+                // Retrieving and validating the Steam paths
                 var steamPaths = PathUtilities.GetSteamPaths();
                 if (steamPaths == null)
                 {
@@ -28,12 +31,12 @@ namespace OculusKiller.Core
                     return;
                 }
 
+                // Starting the SteamVR process and validating it
                 string startupPath = steamPaths.Item1;
                 string vrServerPath = steamPaths.Item2;
                 ErrorLogger.Log($"Steam startup path: {startupPath}");
                 ErrorLogger.Log($"Steam VR server path: {vrServerPath}");
 
-                // Using ProcessUtilities to start the SteamVR process
                 Process steamProcess = ProcessUtilities.StartProcess(startupPath);
                 if (steamProcess == null)
                 {
@@ -42,12 +45,15 @@ namespace OculusKiller.Core
 
                 ErrorLogger.Log("Started SteamVR using vrstartup.exe");
 
+                // Waiting for the SteamVR process to start
                 await Task.Delay(5000);
 
+                // Monitoring the VR server
                 VRServerMonitor.MonitorVRServer(vrServerPath, oculusPath);
             }
             catch (Exception e)
             {
+                // Handling and logging exceptions
                 ErrorLogger.LogError(e, isCritical: true);
             }
         }
