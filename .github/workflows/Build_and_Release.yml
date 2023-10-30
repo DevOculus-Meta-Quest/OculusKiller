@@ -44,6 +44,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GIT_ACTIONS }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: OculusKiller\OculusKiller\bin\x64\Release\OculusDash.exe
+        asset_path: D:\a\OculusKiller\OculusKiller\OculusKiller\bin\x64\Release\OculusDash.exe
         asset_name: OculusDash.exe
         asset_content_type: application/vnd.microsoft.portable-executable
+
