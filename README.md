@@ -1,4 +1,4 @@
-# Oculus Killer
+# Oculus Killer 🚀
 
 Revamped and supercharged to enhance your VR experience by terminating unnecessary Oculus processes and seamlessly launching SteamVR. This refactored version is modular, smoother, faster, and equipped with improved error handling, crash monitors, and automatic restart capabilities in case of a crash.
 
@@ -8,15 +8,16 @@ Revamped and supercharged to enhance your VR experience by terminating unnecessa
 
 This tool complements the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), ensuring that you have comprehensive control and optimization of your VR experience.
 
-![Your Image Description](assets/images/your_image.jpg)
+![Oculus Killer Banner](assets/images/your_image.jpg)
 
-## Index
+## 🚩 Index
 - [Features](#features)
+- [Downloads](#Download)
 - [Installation](#installation)
 - [Common Fixes](#common-fixes)
 - [Changelog](Changelog.md)
 
-## Features
+## 🌟 Features
 - Modular Design
 - Enhanced Performance
 - Improved Error Handling
@@ -37,20 +38,18 @@ Grab the latest release [here](https://github.com/DevOculus-Meta-Quest/OculusKil
   <a href="https://www.paypal.com/donate/?business=X76ZW4RHA6T9C&no_recurring=0&item_name=Support+the+evolution+of+Oculus+VR+Dash+Manager%21+Your+donation+fuels+innovation+and+enhanced+virtual+experiences.+%F0%9F%9A%80%F0%9F%8C%90&currency_code=USD"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal"></a>
 </p>
 
-## Installation
-- Open Task Manager, go to Services and look for OVRService, right click on it and stop it. (If you have the Oculus app or any VR games open, they WILL close when stopping OVRService.)
-- Go to `C:\Program Files\Oculus\Support\oculus-dash\dash\bin` in Explorer.
-- Rename the original `OculusDash.exe` to `OculusDash.exe.bak` and move my replacement `OculusDash.exe` into the folder you just opened in Explorer.
-- Go back to Task Manager, look for OVRService again, right click on it and start it.
+## 🛠 Installation
+1. Open Task Manager, go to Services and look for OVRService, right click on it and stop it. (If you have the Oculus app or any VR games open, they WILL close when stopping OVRService.)
+2. Go to `C:\Program Files\Oculus\Support\oculus-dash\dash\bin` in Explorer.
+3. Rename the original `OculusDash.exe` to `OculusDash.exe.bak` and move my replacement `OculusDash.exe` into the folder you just opened in Explorer.
+4. Go back to Task Manager, look for OVRService again, right click on it and start it.
 
-## Common Fixes
+## 🛠 Common Fixes
 ### Headset Infinitely Loads (SteamVR doesn't launch)
 - Open "File Explorer"
 - Click the "View" tab (at the top)
 - Enable "File name extensions"
 - Follow the installation instructions
-
-You can verify that you installed it successfully if "OculusDash.exe.bak" is the "BAK File" type.
 
 ![Black Screen Fix](assets/images/BlackScreenFix.png)
 
