@@ -49,7 +49,7 @@ namespace OculusKiller.Core
                 await Task.Delay(5000);
 
                 // Monitoring the VR server
-                VRServerMonitor.MonitorVRServer(vrServerPath, oculusPath);
+                ProcessMonitor.MonitorProcesses(vrServerPath, oculusPath);
             }
             catch (Exception e)
             {

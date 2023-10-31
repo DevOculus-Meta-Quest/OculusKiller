@@ -71,7 +71,7 @@
     <Compile Include="Utilities\ProcessExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ProcessUtilities.cs" />
-    <Compile Include="Utilities\VRServerMonitor.cs" />
+    <Compile Include="Utilities\ProcessMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
