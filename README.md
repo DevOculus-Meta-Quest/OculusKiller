@@ -1,63 +1,74 @@
 # Oculus Killer
-Completely kill the Oculus Dash and auto-launch SteamVR, with my newest discovery.
 
-[![Discord Shield](https://discordapp.com/api/guilds/972139796354973806/widget.png?style=shield)](https://discord.gg/dPsfJhsGwb)
+Revamped and supercharged to enhance your VR experience by terminating unnecessary Oculus processes and seamlessly launching SteamVR. This refactored version is modular, smoother, faster, and equipped with improved error handling, crash monitors, and automatic restart capabilities in case of a crash.
 
----
-Yep, it's finally a reality. You can now make your Oculus headset into an almost-native SteamVR headset, this simple replacement for Oculus Dash will make it so that as soon as you put your headset on (or launch Link), SteamVR will launch!
+**Original Author:** [@kaitlyndotmoe](https://github.com/kaitlyndotmoe)  
+**Contributors:** @UnusualNorm, @HyrumGG  
+**Original Repository:** [OculusKiller](https://github.com/kaitlyndotmoe/OculusKiller)
 
-Not only does this boost performance by considerable amounts by killing Oculus Dash entirely (seriously, Oculus Dash was eating 200 MB of memory + GPU, even when not in use) so this should help with performance issues with SteamVR on Oculus headsets too. But this also means the Oculus button on your controller does nothing, as there is literally no dash.
+This tool complements the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), ensuring that you have comprehensive control and optimization of your VR experience.
 
-There MIGHT be some bugs, if you experience anything you think is a bug, please create a new issue inside this repo.
+![Your Image Description](assets/images/your_image.jpg)
 
-## Disclaimer
-This breaks Oculus based games, as in you might be able to launch Oculus games, but due to the Oculus Dash being quite literally killed you will be forever stuck in that game. It is recommended to use Revive if you need to play the Oculus version of a game, period.
+## Index
+- [Features](#features)
+- [Installation](#installation)
+- [Common Fixes](#common-fixes)
+- [Changelog](Changelog.md)
+
+## Features
+- Modular Design
+- Enhanced Performance
+- Improved Error Handling
+- Crash Monitoring
+- Automatic Restart on Crash
+- Graceful Exit when Leaving SteamVR
+
+## ⬇️ Download ⬇️
+
+Grab the latest release [here](https://github.com/DevOculus-Meta-Quest/OculusKiller/releases).
+
+<p align="center">
+  <img src="https://hits.dwyl.com/DevOculus-Meta-Quest/OculusKiller.svg" alt="HitCount">
+  <img src="https://img.shields.io/github/actions/workflow/status/DevOculus-Meta-Quest/OculusKiller/Build_and_Release.yml" alt="GitHub Workflow Status">
+  <img src="https://img.shields.io/github/downloads-pre/DevOculus-Meta-Quest/OculusKiller/latest/total?style=plastic" alt="GitHub release (latest by SemVer including pre-releases)">
+  <img src="https://img.shields.io/github/downloads/DevOculus-Meta-Quest/OculusKiller/total?style=plastic" alt="GitHub all releases">
+  <img src="https://img.shields.io/github/release-date/DevOculus-Meta-Quest/OculusKiller?style=plastic" alt="GitHub Downloads">
+  <a href="https://www.paypal.com/donate/?business=X76ZW4RHA6T9C&no_recurring=0&item_name=Support+the+evolution+of+Oculus+VR+Dash+Manager%21+Your+donation+fuels+innovation+and+enhanced+virtual+experiences.+%F0%9F%9A%80%F0%9F%8C%90&currency_code=USD"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal"></a>
+</p>
 
 ## Installation
 - Open Task Manager, go to Services and look for OVRService, right click on it and stop it. (If you have the Oculus app or any VR games open, they WILL close when stopping OVRService.)
-- Go to C:\Program Files\Oculus\Support\oculus-dash\dash\bin in Explorer.
-- Rename the original OculusDash.exe to OculusDash.exe.bak and move my replacement OculusDash.exe into the folder you just opened in Explorer.
+- Go to `C:\Program Files\Oculus\Support\oculus-dash\dash\bin` in Explorer.
+- Rename the original `OculusDash.exe` to `OculusDash.exe.bak` and move my replacement `OculusDash.exe` into the folder you just opened in Explorer.
 - Go back to Task Manager, look for OVRService again, right click on it and start it.
 
-Enjoy your completely yeeted Oculus Dash with SteamVR auto-start, and the extra performance!
-
----
-# Common fixes
-Here is a list of common issues and their respective fixes/workarounds!
-
-## Headset Infinitely Loads (SteamVR doesn't launch)
-This issue can occur when you do not have "File name extensions" enabled when renaming OculusDash.exe. To fix this:
-
+## Common Fixes
+### Headset Infinitely Loads (SteamVR doesn't launch)
 - Open "File Explorer"
 - Click the "View" tab (at the top)
 - Enable "File name extensions"
 - Follow the installation instructions
 
-You can verify that you installed it succesfully if "OculusDash.exe.bak" is the "BAK File" type. And looks like the below screenshot.
+You can verify that you installed it successfully if "OculusDash.exe.bak" is the "BAK File" type.
 
-<img src="assets/images/BlackScreenFix.png" width="627" height="444" />
+![Black Screen Fix](assets/images/BlackScreenFix.png)
 
-## OpenXR Games launch, but cannot be seen
-This is a very common issue, and has to do with OpenXR prefering the use of Oculus over SteamVR. The fix is very simple:
-
+### OpenXR Games launch, but cannot be seen
 - Open SteamVR settings (with headset connected)
 - Press "Show" under "Advanced Settings"
 - Open the "Developer" tab
-- Click "Set SteamVR as OpenXR runtine"
+- Click "Set SteamVR as OpenXR runtime"
 
-<img src="https://service.viveport.com/hc/article_attachments/4423262818317/___2022-01-28___3.09.45.png" width="426" height="328" />
+![OpenXR Fix](assets/images/OpenXR_Fix.png)
 
-Image Source: [Viveport](https://service.viveport.com/hc/en-us/articles/4423262844813-How-to-setup-correct-OpenXR-runtime)
-
-## Non-OpenXR Games launch, but cannot be seen
-This is another very common issue, some games manually check for Oculus instead of following your preferences. A workaround can be found by using [OVR Advanced Settings](https://store.steampowered.com/app/1009850/OVR_Advanced_Settings/).
-
-DISCLAIMER: This workaround may prevent some SteamVR games from launching, make sure to undo this fix if you are having trouble launching games.
-
+### Non-OpenXR Games launch, but cannot be seen
 - Install [OVR Advanced Settings](https://store.steampowered.com/app/1009850/OVR_Advanced_Settings/) and launch it.
 - Open the new overlay (found next to the desktop button)
 - Open the overlay settings (bottom left)
 - Turn on "Autostart"
-- Turn on "Force Use SteamVR (Disable Oculus API [expiremental])"
+- Turn on "Force Use SteamVR (Disable Oculus API [experimental])"
 
-<img src="assets/images/OVRSettingsFix.png" width="600" height="400" />
+![OVR Settings Fix](assets/images/OVRSettingsFix.png)
+
+**Logs:** All log files are located at `C:\Users\<USERNAME>\AppData\Local\OculusKiller\OculusKiller.log`
