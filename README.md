@@ -11,10 +11,11 @@ This tool complements the [Oculus VR Dash Manager](https://github.com/DevOculus-
 <img src="assets/images/logo-black.svg" alt="OculusKiller" width="200" height="100"/>
 
 ## 🚩 Index
-- [Features](#features)
-- [Downloads](#Download)
-- [Installation](#installation)
-- [Common Fixes](#common-fixes)
+- [Features](#-features)
+- [Download](#-download-)
+- [Installation](#-installation)
+- [Common Fixes](#-common-fixes)
+- [Support](#support-oculus-killer-)
 - [Changelog](Changelog.md)
 
 ## 🌟 Features
@@ -37,6 +38,28 @@ Grab the latest release [here](https://github.com/DevOculus-Meta-Quest/OculusKil
   <img src="https://img.shields.io/github/release-date/DevOculus-Meta-Quest/OculusKiller?style=plastic" alt="GitHub Downloads">
   <a href="https://www.paypal.com/donate/?business=X76ZW4RHA6T9C&no_recurring=0&item_name=Support+the+evolution+of+Oculus+VR+Dash+Manager%21+Your+donation+fuels+innovation+and+enhanced+virtual+experiences.+%F0%9F%9A%80%F0%9F%8C%90&currency_code=USD"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal"></a>
 </p>
+
+# Support Oculus Killer 🚀
+
+We're on a mission to redefine your virtual reality experience. Oculus Killer is not just a tool; it's a movement towards a seamless, powerful, and user-centric VR journey. With the collective genius of [@kaitlyndotmoe](https://github.com/kaitlyndotmoe), @UnusualNorm, and @HyrumGG, we've reimagined the way you interact with your Oculus device.
+
+Our latest iteration is a testament to the dedication and feedback from our vibrant community. We've listened, iterated, and delivered a modular, robust, and intuitive solution that prioritizes performance and stability. The Oculus Killer is your gateway to a VR experience that's unencumbered by unnecessary processes, giving you the freedom to enjoy SteamVR with unprecedented ease.
+
+This endeavor is a sibling to the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), and together, they form a formidable duo that puts control back into your hands. Your support and contributions have been the cornerstone of our development process, and we're immensely grateful for the passion you bring to our projects.
+
+🌐 [Explore Oculus Killer](https://github.com/DevOculus-Meta-Quest/OculusKiller/releases)
+
+As we continue to push the boundaries of what's possible within VR, we invite you to join us on this journey. Your insights, feedback, and support fuel our innovation and drive us to create enhanced virtual experiences that resonate with your needs.
+
+If you believe in what we're building and wish to contribute to the evolution of Oculus Killer, consider making a donation. Your generosity not only accelerates development but also empowers us to dream bigger and deliver better.
+
+🚀 [Support Us with a Donation](https://www.paypal.com/donate/?business=X76ZW4RHA6T9C&no_recurring=0&item_name=Support+the+evolution+of+Oculus+VR+Dash+Manager%21+Your+donation+fuels+innovation+and+enhanced+virtual+experiences.+%F0%9F%9A%80%F0%9F%8C%90&currency_code=USD)
+
+Every contribution, no matter the size, makes a monumental difference. Thank you for believing in Oculus Killer and for being an integral part of our community. Together, we're not just playing games; we're setting new standards for virtual reality.
+
+With gratitude,
+
+The Oculus Killer Team 🌟
 
 ## 🛠 Installation
 1. Open Task Manager, go to Services and look for OVRService, right click on it and stop it. (If you have the Oculus app or any VR games open, they WILL close when stopping OVRService.)
