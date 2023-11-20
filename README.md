@@ -8,7 +8,7 @@ Revamped and supercharged to enhance your VR experience by terminating unnecessa
 
 This tool complements the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), ensuring that you have comprehensive control and optimization of your VR experience.
 
-<img src="assets/images/logo-black.svg" alt="OculusKiller" width="200" height="100"/>
+<img src="assets/images/OculusKiller_Logo.png" alt="OculusKiller" width="400" height="400"/>
 
 ## 🚩 Index
 - [Features](#-features)
