@@ -58,9 +58,12 @@ namespace OculusKiller.Core
             }
 
             // After reaching the maximum retry limit, terminate SteamVR and Oculus Air Link
-            ErrorLogger.Log("Maximum retry limit reached. Terminating SteamVR and Oculus Air Link.");
-            ProcessUtilities.TerminateProcess("vrserver");
-            ProcessUtilities.TerminateProcess("OVRServer_x64");
+            if (retryCount >= MaxRetries)
+            {
+                ErrorLogger.Log("Maximum retry limit reached. Terminating SteamVR and Oculus Air Link.");
+                ProcessUtilities.TerminateProcess("vrserver");
+                ProcessUtilities.TerminateProcess("OVRServer_x64");
+            }
         }
 
         private static bool DidUserExitSteamVR(Process vrServerProcess, Process vrDashboardProcess)
