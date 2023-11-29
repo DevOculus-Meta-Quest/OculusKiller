@@ -1,4 +1,5 @@
-﻿using OculusKiller.Utilities;
+﻿using OculusKiller.RuntimeManagement; // Add this to use OpenXRRuntimeChecker
+using OculusKiller.Utilities;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace OculusKiller.Core
             {
                 // Logging the start of the application
                 ErrorLogger.Log("Application started.");
+
+                // Check and log OpenXR runtimes
+                OpenXRRuntimeChecker.CheckAndLogRuntimes(); // Added line to log OpenXR runtimes
 
                 // Retrieving and validating the Oculus path
                 string oculusPath = PathUtilities.GetOculusPath();
