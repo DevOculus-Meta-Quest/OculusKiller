@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OculusKiller.Utilities;
+using System;
 using System.Diagnostics;
 using System.Linq;
-using OculusKiller.Utilities;
 
 namespace OculusKiller.Core
 {
@@ -17,36 +17,35 @@ namespace OculusKiller.Core
             {
                 try
                 {
+                    // Retrieving the vrserver and vrdashboard processes
                     var vrServerProcess = Process.GetProcessesByName("vrserver")
                         .FirstOrDefault(process => process.MainModule.FileName == vrServerPath);
-
                     var vrDashboardProcess = Process.GetProcessesByName("vrdashboard").FirstOrDefault();
 
                     if (vrServerProcess != null && vrDashboardProcess != null)
                     {
                         ErrorLogger.Log("Monitoring vrserver and vrdashboard processes.");
 
-                        vrServerProcess.WaitForExit(); // Wait for the vrserver process to exit
-                        vrDashboardProcess.WaitForExit(); // Wait for the vrdashboard process to exit
+                        // Wait for both processes to exit
+                        vrServerProcess.WaitForExit();
+                        vrDashboardProcess.WaitForExit();
 
-                        // Check exit codes to determine if processes crashed
-                        if (vrServerProcess.ExitCode != 0 || vrDashboardProcess.ExitCode != 0)
+                        // Check if the user has intentionally exited SteamVR
+                        if (DidUserExitSteamVR(vrServerProcess, vrDashboardProcess))
                         {
-                            ErrorLogger.Log("vrserver or vrdashboard process crashed. Restarting...");
-                            // Restarting the SteamVR process
-                            ProcessUtilities.StartProcess(vrServerPath);
-                            retryCount++;
+                            ErrorLogger.Log("User has intentionally exited SteamVR.");
+                            break; // Exit the loop as user has intentionally exited
                         }
                         else
                         {
-                            ErrorLogger.Log("vrserver and vrdashboard processes exited normally.");
-                            break; // Exit the loop if processes terminated normally
+                            ErrorLogger.Log("vrserver or vrdashboard process crashed. Restarting...");
+                            ProcessUtilities.StartProcess(vrServerPath);
+                            retryCount++;
                         }
                     }
                     else
                     {
                         ErrorLogger.Log("vrserver or vrdashboard process not found. Starting...");
-                        // Restarting the SteamVR process
                         ProcessUtilities.StartProcess(vrServerPath);
                         retryCount++;
                     }
@@ -62,6 +61,20 @@ namespace OculusKiller.Core
             ErrorLogger.Log("Maximum retry limit reached. Terminating SteamVR and Oculus Air Link.");
             ProcessUtilities.TerminateProcess("vrserver");
             ProcessUtilities.TerminateProcess("OVRServer_x64");
+        }
+
+        private static bool DidUserExitSteamVR(Process vrServerProcess, Process vrDashboardProcess)
+        {
+            // Check if the exit code is 0, which usually indicates a normal exit
+            if (vrServerProcess.ExitCode == 0 && vrDashboardProcess.ExitCode == 0)
+            {
+                return true; // User likely exited SteamVR normally
+            }
+
+            // Additional timing analysis can be implemented here if needed
+            // For example, checking the runtime of the processes, user activity, etc.
+
+            return false; // Default assumption is that the user did not exit normally
         }
     }
 }

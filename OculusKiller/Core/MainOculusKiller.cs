@@ -1,4 +1,5 @@
-﻿using OculusKiller.Utilities;
+﻿using OculusKiller.RuntimeManagement; // Add this to use OpenXRRuntimeChecker
+using OculusKiller.Utilities;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -14,11 +15,14 @@ namespace OculusKiller.Core
                 // Logging the start of the application
                 ErrorLogger.Log("Application started.");
 
+                // Check and log OpenXR runtimes
+                OpenXRRuntimeChecker.CheckAndLogRuntimes(); // Added line to log OpenXR runtimes
+
                 // Retrieving and validating the Oculus path
                 string oculusPath = PathUtilities.GetOculusPath();
                 if (string.IsNullOrEmpty(oculusPath))
                 {
-                    ErrorLogger.LogError(new Exception("Oculus path not found."));
+                    ErrorLogger.LogError(new Exception("Oculus path not found."), isCritical: false);
                     return;
                 }
                 ErrorLogger.Log($"Oculus path: {oculusPath}");
@@ -27,7 +31,7 @@ namespace OculusKiller.Core
                 var steamPaths = PathUtilities.GetSteamPaths();
                 if (steamPaths == null)
                 {
-                    ErrorLogger.LogError(new Exception("Steam paths not found."));
+                    ErrorLogger.LogError(new Exception("Steam paths not found."), isCritical: false);
                     return;
                 }
 
@@ -40,6 +44,7 @@ namespace OculusKiller.Core
                 Process steamProcess = ProcessUtilities.StartProcess(startupPath);
                 if (steamProcess == null)
                 {
+                    ErrorLogger.LogError(new Exception("Failed to start SteamVR process."), isCritical: false);
                     return;
                 }
 
