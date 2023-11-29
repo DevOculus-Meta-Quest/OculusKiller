@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Core\MainOculusKiller.cs" />
     <Compile Include="Utilities\ErrorLogger.cs" />
+    <Compile Include="Utilities\OpenXRRuntimeChecker.cs" />
     <Compile Include="Utilities\PathUtilities.cs" />
     <Compile Include="Utilities\ProcessExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
