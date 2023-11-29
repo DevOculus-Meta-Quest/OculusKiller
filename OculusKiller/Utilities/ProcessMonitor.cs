@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OculusKiller.Utilities;
+using System;
 using System.Diagnostics;
 using System.Linq;
-using OculusKiller.Utilities;
 
 namespace OculusKiller.Core
 {
@@ -53,7 +53,7 @@ namespace OculusKiller.Core
                 }
                 catch (Exception e)
                 {
-                    ErrorLogger.LogError(e);
+                    ErrorLogger.LogError(e, isCritical: false);
                     retryCount++;
                 }
             }
