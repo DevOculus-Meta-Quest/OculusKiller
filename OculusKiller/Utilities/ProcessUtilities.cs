@@ -1,7 +1,5 @@
-﻿using OculusKiller.Utilities;
-using System;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
 
 namespace OculusKiller.Utilities
 {
@@ -36,10 +34,11 @@ namespace OculusKiller.Utilities
                 {
                     process.Kill();
                     process.WaitForExit();
+                    ErrorLogger.Log($"Terminated process: {process.ProcessName}");
                 }
                 catch (Exception e)
                 {
-                    ErrorLogger.LogError(e);
+                    ErrorLogger.LogError(new Exception($"Error terminating process: {process.ProcessName}. Error: {e.Message}"));
                 }
             }
         }
