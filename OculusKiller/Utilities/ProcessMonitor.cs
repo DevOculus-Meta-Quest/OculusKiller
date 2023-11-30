@@ -85,7 +85,7 @@ namespace OculusKiller.Core
                           });
         }
 
-        private static bool DidUserExitSteamVR(Process vrServerProcess)
+        private static bool DidUserExitSteamVR(Process vrServerProcess, Process vrDashboardProcess)
         {
             try
             {
