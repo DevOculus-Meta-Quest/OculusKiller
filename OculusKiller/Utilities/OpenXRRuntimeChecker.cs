@@ -40,12 +40,8 @@ namespace OculusKiller.RuntimeManagement
                 {
                     foreach (var valueName in key.GetValueNames())
                     {
-                        // Assuming the values are stored as strings
-                        var runtimePath = key.GetValue(valueName) as string;
-                        if (!string.IsNullOrEmpty(runtimePath))
-                        {
-                            runtimes.Add(runtimePath);
-                        }
+                        // The value names are the actual file paths
+                        runtimes.Add(valueName);
                     }
                 }
             }
