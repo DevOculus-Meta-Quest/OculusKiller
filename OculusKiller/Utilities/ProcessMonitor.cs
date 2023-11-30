@@ -89,21 +89,42 @@ namespace OculusKiller.Core
         {
             try
             {
-                // Check if the exit code is 0, which usually indicates a normal exit
-                if (vrServerProcess.ExitCode == 0 && vrDashboardProcess.ExitCode == 0)
+                // Check if the vrserver process was started by this application
+                if (vrServerProcess.StartInfo.FileName != string.Empty)
                 {
-                    return true; // User likely exited SteamVR normally
+                    // Check if the vrserver process exited normally
+                    if (vrServerProcess.ExitCode != 0)
+                    {
+                        return false; // Abnormal exit
+                    }
                 }
+
+                // Check if the vrdashboard process was started by this application
+                if (vrDashboardProcess.StartInfo.FileName != string.Empty)
+                {
+                    // Check if the vrdashboard process exited normally
+                    if (vrDashboardProcess.ExitCode != 0)
+                    {
+                        return false; // Abnormal exit
+                    }
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                ErrorLogger.LogError(ex, isCritical: false);
+                // If an InvalidOperationException is caught, it's likely because the process was not started by this application
+                // In this case, we can't determine the exit reason, so we assume it's not a normal user exit
+                return false;
             }
             catch (Exception e)
             {
                 ErrorLogger.LogError(e, isCritical: false);
+                // For any other exceptions, also assume it's not a normal user exit
+                return false;
             }
 
-            // Additional timing analysis can be implemented here if needed
-            // For example, checking the runtime of the processes, user activity, etc.
-
-            return false; // Default assumption is that the user did not exit normally
+            // If no exceptions were thrown and the processes exited normally, assume it's a user exit
+            return true;
         }
     }
 }
