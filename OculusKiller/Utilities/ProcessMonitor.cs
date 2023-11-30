@@ -85,27 +85,23 @@ namespace OculusKiller.Core
                           });
         }
 
-        private static bool DidUserExitSteamVR(Process vrServerProcess, Process vrDashboardProcess)
+        private static bool DidUserExitSteamVR(Process vrServerProcess)
         {
             try
             {
                 // Check if the vrserver process was started by this application
                 if (vrServerProcess.StartInfo.FileName != string.Empty)
                 {
-                    // Check if the vrserver process exited normally
-                    if (vrServerProcess.ExitCode != 0)
+                    // Check if the vrserver process has exited
+                    if (!vrServerProcess.HasExited)
                     {
-                        return false; // Abnormal exit
+                        return false; // vrserver process is still running
                     }
-                }
 
-                // Check if the vrdashboard process was started by this application
-                if (vrDashboardProcess.StartInfo.FileName != string.Empty)
-                {
-                    // Check if the vrdashboard process exited normally
-                    if (vrDashboardProcess.ExitCode != 0)
+                    // Check if the vrserver process exited normally
+                    if (vrServerProcess.ExitCode == 0)
                     {
-                        return false; // Abnormal exit
+                        return true; // vrserver process exited normally, indicating a user-initiated exit
                     }
                 }
             }
@@ -123,8 +119,8 @@ namespace OculusKiller.Core
                 return false;
             }
 
-            // If no exceptions were thrown and the processes exited normally, assume it's a user exit
-            return true;
+            // If the vrserver process has exited but not normally, assume it's not a user-initiated exit
+            return false;
         }
     }
 }
