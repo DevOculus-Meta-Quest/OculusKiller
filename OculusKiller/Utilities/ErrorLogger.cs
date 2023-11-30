@@ -36,8 +36,19 @@ namespace OculusKiller.Utilities
         // Helper method to format exception messages
         private static string FormatExceptionMessage(Exception exception)
         {
-            return $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} [ERROR] An error occurred: {exception.Message}\n" +
-                   $"Stack Trace: {exception.StackTrace}";
+            string message = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} [ERROR] An error occurred: {exception.Message}\n" +
+                             $"Source: {exception.Source}\n" +
+                             $"Target Site: {exception.TargetSite}\n" +
+                             $"Stack Trace: {exception.StackTrace}";
+
+            // Log inner exception if present
+            if (exception.InnerException != null)
+            {
+                message += $"\nInner Exception: {exception.InnerException.Message}\n" +
+                           $"Inner Stack Trace: {exception.InnerException.StackTrace}";
+            }
+
+            return message;
         }
 
         // Ensures the log directory exists
