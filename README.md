@@ -1,12 +1,12 @@
 # Oculus Killer 🚀
 
-Revamped and supercharged to enhance your VR experience by terminating unnecessary Oculus processes and seamlessly launching SteamVR. This refactored version is modular, smoother, faster, and equipped with improved error handling, crash monitors, and automatic restart capabilities in case of a crash.
+Oculus Killer has evolved! Now more efficient and user-friendly, it focuses on enhancing your VR experience by terminating unnecessary Oculus processes and seamlessly launching SteamVR. This latest version is a leap forward, featuring a modular design, smoother and faster performance, and an advanced logging system for better error tracking and process monitoring.
 
 **Original Author:** [@kaitlyndotmoe](https://github.com/kaitlyndotmoe)  
 **Contributors:** @UnusualNorm, @HyrumGG  
 **Original Repository:** [OculusKiller](https://github.com/kaitlyndotmoe/OculusKiller)
 
-This tool complements the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), ensuring that you have comprehensive control and optimization of your VR experience.
+This tool is a perfect companion to the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), ensuring a comprehensive and optimized VR experience.
 
 <img src="assets/images/OculusKiller_Logo.png" alt="OculusKiller" width="400" height="400"/>
 
@@ -15,16 +15,18 @@ This tool complements the [Oculus VR Dash Manager](https://github.com/DevOculus-
 - [Download](#-download-)
 - [Installation](#-installation)
 - [Common Fixes](#-common-fixes)
-- [Support](#support-oculus-killer-)
+- [Support](#-support-oculus-killer)
 - [Changelog](Changelog.md)
+- [Logging](#-logging)
+- [Acknowledgements](#-acknowledgements)
 
 ## 🌟 Features
-- Modular Design
-- Enhanced Performance
-- Improved Error Handling
-- Crash Monitoring
-- Automatic Restart on Crash
-- Graceful Exit when Leaving SteamVR
+- Modular Design for Enhanced Flexibility
+- Improved Performance for a Smoother Experience
+- Advanced Error Handling for Reliability
+- Real-Time Process Monitoring
+- Graceful Exit Detection for SteamVR
+- Efficient Logging System with Log Rotation
 
 ## ⬇️ Download ⬇️
 
@@ -39,20 +41,13 @@ Grab the latest release [here](https://github.com/DevOculus-Meta-Quest/OculusKil
   <a href="https://www.paypal.com/donate/?business=X76ZW4RHA6T9C&no_recurring=0&item_name=Support+the+evolution+of+Oculus+VR+Dash+Manager%21+Your+donation+fuels+innovation+and+enhanced+virtual+experiences.+%F0%9F%9A%80%F0%9F%8C%90&currency_code=USD"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="PayPal"></a>
 </p>
 
-# Support Oculus Killer 🚀
+## 📜 Logging
+- **Log Location:** All log files are located at `C:\Users\<USERNAME>\AppData\Local\OculusKiller\OculusKiller.log`.
+- **Log Rotation:** To ensure efficiency and manageability, Oculus Killer implements a log rotation system. This means older logs are archived periodically, keeping the active log file fresh and concise.
+- **Error and Process Monitoring:** The logging system meticulously records all significant events, errors, and process activities. This allows for easy troubleshooting and understanding of the application's behavior.
+- **Reading Logs:** You can view the logs using any text editor. They provide detailed insights into the application's operations, including any issues encountered and actions taken by the software.
 
-We're on a mission to redefine your virtual reality experience. Oculus Killer is not just a tool; it's a movement towards a seamless, powerful, and user-centric VR journey. With the collective genius of [@kaitlyndotmoe](https://github.com/kaitlyndotmoe), @UnusualNorm, and @HyrumGG, we've reimagined the way you interact with your Oculus device.
-
-Our latest iteration is a testament to the dedication and feedback from our vibrant community. We've listened, iterated, and delivered a modular, robust, and intuitive solution that prioritizes performance and stability. The Oculus Killer is your gateway to a VR experience that's unencumbered by unnecessary processes, giving you the freedom to enjoy SteamVR with unprecedented ease.
-
-This endeavor is a sibling to the [Oculus VR Dash Manager](https://github.com/DevOculus-Meta-Quest/Oculus-VR-Dash-Manager), and together, they form a formidable duo that puts control back into your hands. Your support and contributions have been the cornerstone of our development process, and we're immensely grateful for the passion you bring to our projects.
-
-🌐 [Explore Oculus Killer](https://github.com/DevOculus-Meta-Quest/OculusKiller/releases)
-
-As we continue to push the boundaries of what's possible within VR, we invite you to join us on this journey. Your insights, feedback, and support fuel our innovation and drive us to create enhanced virtual experiences that resonate with your needs.
-
-If you believe in what we're building and wish to contribute to the evolution of Oculus Killer, consider making a donation. Your generosity not only accelerates development but also empowers us to dream bigger and deliver better.
-
+## 🚀 Support Oculus Killer
 🚀 [Support Us with a Donation](https://www.paypal.com/donate/?business=X76ZW4RHA6T9C&no_recurring=0&item_name=Support+the+evolution+of+Oculus+VR+Dash+Manager%21+Your+donation+fuels+innovation+and+enhanced+virtual+experiences.+%F0%9F%9A%80%F0%9F%8C%90&currency_code=USD)
 
 Every contribution, no matter the size, makes a monumental difference. Thank you for believing in Oculus Killer and for being an integral part of our community. Together, we're not just playing games; we're setting new standards for virtual reality.
@@ -60,6 +55,12 @@ Every contribution, no matter the size, makes a monumental difference. Thank you
 With gratitude,
 
 The Oculus Killer Team 🌟
+
+
+## 🔄 Recent Updates
+- **Removed Auto-Restart:** We've removed the automatic restart function due to its potential to cause issues. Oculus Killer now focuses on efficiently terminating processes and monitoring for a more stable experience.
+- **Enhanced Exit Detection:** The process monitoring has been refined to better detect when users exit SteamVR, ensuring a more responsive and accurate shutdown of unnecessary processes.
+- **Advanced Logging:** The logging system has been upgraded for more detailed and informative logs, making it easier to track the application's performance and troubleshoot any issues.
 
 ## 🛠 Installation
 1. Open Task Manager, go to Services and look for OVRService, right click on it and stop it. (If you have the Oculus app or any VR games open, they WILL close when stopping OVRService.)
@@ -74,23 +75,27 @@ The Oculus Killer Team 🌟
 - Enable "File name extensions"
 - Follow the installation instructions
 
-![Black Screen Fix](assets/images/BlackScreenFix.png)
+## 🙏 Acknowledgements
+We extend our heartfelt gratitude to everyone who has contributed to the development and evolution of Oculus Killer. This project is not just a product of our team's hard work but also a reflection of the invaluable support and feedback from our user community.
 
-### OpenXR Games launch, but cannot be seen
-- Open SteamVR settings (with headset connected)
-- Press "Show" under "Advanced Settings"
-- Open the "Developer" tab
-- Click "Set SteamVR as OpenXR runtime"
+**Special Thanks:**
+- **[@kaitlyndotmoe](https://github.com/kaitlyndotmoe):** For initiating this project and laying the foundation for what Oculus Killer has become today.
+- **Community Contributors:** To all the developers, testers, and users who have contributed their time, skills, and insights to improve Oculus Killer. Your pull requests, bug reports, and suggestions have been instrumental in shaping this tool.
+- **Oculus VR Dash Manager Team:** For their collaboration and support, which has been crucial in ensuring compatibility and enhancing the overall VR experience.
+- **Our Users:** To every individual who has downloaded, used, and provided feedback on Oculus Killer. Your engagement and enthusiasm keep us motivated and focused on continuous improvement.
 
-![OpenXR Fix](assets/images/OpenXR_Fix.png)
+**Donors and Supporters:**
+- We are immensely thankful to those who have supported us through donations. Your generosity helps us keep the project alive and thriving.
 
-### Non-OpenXR Games launch, but cannot be seen
-- Install [OVR Advanced Settings](https://store.steampowered.com/app/1009850/OVR_Advanced_Settings/) and launch it.
-- Open the new overlay (found next to the desktop button)
-- Open the overlay settings (bottom left)
-- Turn on "Autostart"
-- Turn on "Force Use SteamVR (Disable Oculus API [experimental])"
+**Family and Friends:**
+- A special mention to our families and friends for their understanding, encouragement, and patience. Balancing development time with personal life is a challenge, and your support makes it all possible.
 
-![OVR Settings Fix](assets/images/OVRSettingsFix.png)
+As we continue to develop Oculus Killer, we remain committed to our community's needs and aspirations. Your ongoing support and feedback are the driving forces behind our innovation and dedication.
 
-**Logs:** All log files are located at `C:\Users\<USERNAME>\AppData\Local\OculusKiller\OculusKiller.log`
+Thank you for being a part of our journey. Together, we are not just enhancing a tool; we are shaping the future of virtual reality experiences.
+
+**The Oculus Killer Team** 🚀
+
+---
+
+Oculus Killer continues to evolve, driven by community feedback and a commitment to enhancing your VR experience. Stay tuned for more updates and improvements! 🌟
