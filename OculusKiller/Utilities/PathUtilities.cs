@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Web.Script.Serialization;
 
 namespace OculusKiller.Utilities
@@ -57,6 +59,22 @@ namespace OculusKiller.Utilities
             }
 
             return oculusPath;
+        }
+
+        public static Process FindProcessByPath(string processName, string path)
+        {
+            return Process.GetProcessesByName(processName)
+                          .FirstOrDefault(p =>
+                          {
+                              try
+                              {
+                                  return p.MainModule.FileName == path;
+                              }
+                              catch
+                              {
+                                  return false;
+                              }
+                          });
         }
     }
 }
