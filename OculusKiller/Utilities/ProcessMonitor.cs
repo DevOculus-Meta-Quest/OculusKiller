@@ -1,7 +1,6 @@
 ﻿using OculusKiller.Utilities;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 
 namespace OculusKiller.Core
@@ -11,56 +10,61 @@ namespace OculusKiller.Core
         private const int MaxRetries = 3; // Maximum number of consecutive restart attempts
         private const int RetryDelay = 5000; // Delay between retries in milliseconds
 
+        // Method to monitor the VR processes
         public static void MonitorProcesses(string vrServerPath, string oculusPath)
         {
-            int retryCount = 0;
+            int retryCount = 0; // Counter for the number of retries
 
-            while (retryCount < MaxRetries) // Monitoring loop with retry limit
+            // Loop for monitoring with a maximum retry limit
+            while (retryCount < MaxRetries)
             {
                 try
                 {
-                    // Retrieving the vrserver and vrdashboard processes
-                    var vrServerProcess = FindProcessByPath("vrserver", vrServerPath);
-                    var vrDashboardProcess = Process.GetProcessesByName("vrdashboard").FirstOrDefault();
+                    // Find the vrserver process by its path
+                    var vrServerProcess = PathUtilities.FindProcessByPath("vrserver", vrServerPath);
 
-                    if (vrServerProcess != null && vrDashboardProcess != null)
+                    // Check if the vrserver process is found
+                    if (vrServerProcess != null)
                     {
-                        ErrorLogger.Log("Monitoring vrserver and vrdashboard processes.");
+                        ErrorLogger.Log("Monitoring vrserver process.");
 
-                        // Wait for both processes to exit
+                        // Wait for the vrserver process to exit
                         vrServerProcess.WaitForExit();
-                        vrDashboardProcess.WaitForExit();
 
-                        // Check if the user has intentionally exited SteamVR
-                        if (DidUserExitSteamVR(vrServerProcess, vrDashboardProcess))
+                        // Check if the user intentionally exited SteamVR
+                        if (DidUserExitSteamVR(vrServerProcess))
                         {
                             ErrorLogger.Log("User has intentionally exited SteamVR.");
-                            break; // Exit the loop as user has intentionally exited
+                            break; // Exit the loop as the user has intentionally exited
                         }
                         else
                         {
-                            ErrorLogger.Log("vrserver or vrdashboard process crashed. Restarting...");
+                            // If the process crashed, attempt to restart it
+                            ErrorLogger.Log("vrserver process crashed. Restarting...");
                             ProcessUtilities.StartProcess(vrServerPath);
                             retryCount++;
                         }
                     }
                     else
                     {
-                        ErrorLogger.Log("vrserver or vrdashboard process not found. Starting...");
+                        // If the vrserver process is not found, start it
+                        ErrorLogger.Log("vrserver process not found. Starting...");
                         ProcessUtilities.StartProcess(vrServerPath);
                         retryCount++;
                     }
                 }
                 catch (Exception e)
                 {
+                    // Log any exceptions that occur
                     ErrorLogger.LogError(e);
                     retryCount++;
                 }
 
-                Thread.Sleep(RetryDelay); // Delay before next retry
+                // Delay before the next retry
+                Thread.Sleep(RetryDelay);
             }
 
-            // After reaching the maximum retry limit, terminate SteamVR and Oculus Air Link
+            // If the maximum retry limit is reached, terminate SteamVR and Oculus Air Link
             if (retryCount >= MaxRetries)
             {
                 ErrorLogger.Log("Maximum retry limit reached. Terminating SteamVR and Oculus Air Link.");
@@ -69,57 +73,25 @@ namespace OculusKiller.Core
             }
         }
 
-        private static Process FindProcessByPath(string processName, string path)
-        {
-            return Process.GetProcessesByName(processName)
-                          .FirstOrDefault(p =>
-                          {
-                              try
-                              {
-                                  return p.MainModule.FileName == path;
-                              }
-                              catch
-                              {
-                                  return false;
-                              }
-                          });
-        }
-
-        private static bool DidUserExitSteamVR(Process vrServerProcess, Process vrDashboardProcess)
+        // Method to determine if the user intentionally exited SteamVR
+        private static bool DidUserExitSteamVR(Process vrServerProcess)
         {
             try
             {
-                // Check if the vrserver process was started by this application
-                if (vrServerProcess.StartInfo.FileName != string.Empty)
+                // Check if the vrserver process was started by this application and has exited
+                if (vrServerProcess.StartInfo.FileName != string.Empty && vrServerProcess.HasExited)
                 {
-                    // Check if the vrserver process has exited
-                    if (!vrServerProcess.HasExited)
-                    {
-                        return false; // vrserver process is still running
-                    }
-
-                    // Check if the vrserver process exited normally
-                    if (vrServerProcess.ExitCode == 0)
-                    {
-                        return true; // vrserver process exited normally, indicating a user-initiated exit
-                    }
+                    // Return true if the process exited normally (ExitCode is 0)
+                    return vrServerProcess.ExitCode == 0;
                 }
-            }
-            catch (InvalidOperationException ex)
-            {
-                ErrorLogger.LogError(ex, isCritical: false);
-                // If an InvalidOperationException is caught, it's likely because the process was not started by this application
-                // In this case, we can't determine the exit reason, so we assume it's not a normal user exit
-                return false;
             }
             catch (Exception e)
             {
+                // Log any exceptions that occur, but do not treat them as critical
                 ErrorLogger.LogError(e, isCritical: false);
-                // For any other exceptions, also assume it's not a normal user exit
-                return false;
             }
 
-            // If the vrserver process has exited but not normally, assume it's not a user-initiated exit
+            // Assume it's not a normal exit if any exception occurs or conditions are not met
             return false;
         }
     }
