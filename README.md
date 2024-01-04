@@ -1,3 +1,51 @@
+🛑 **Important Update on OculusKiller**
+
+As the world of VR technology continues to evolve, so do our tools and methods for enhancing your virtual reality experience. With great pride in what OculusKiller has achieved, we announce a significant change:
+
+🔗 **OculusKiller is No Longer Maintained**  
+🌐 [Steam Link Now Available on the Oculus Store](https://www.meta.com/en-gb/experiences/5841245619310585/)
+
+Steam Link represents a new chapter in VR gaming, streaming your favorite games directly from your Steam library to your Meta Quest headset. This powerful, intuitive solution offers a high-fidelity and seamless way to enjoy your games wirelessly, using the robust capabilities of your computer.
+
+🌟 **Key Features of Steam Link:**
+- **Seamless Integration:** Wirelessly connects to your computer on the same network with Steam running.
+- **High-Quality Streaming:** Leverages your computer's power for a superior gaming experience.
+- **Access to Steam Library:** Play, discuss, and explore your Steam games and desktop apps.
+
+👉 **Getting Started:**
+1. **Download Steam Link** onto your Meta Quest headset.
+2. **Follow the Setup Guide** for wireless connection to your computer with Steam.
+
+**Minimum System Requirements:**
+- OS: Windows 10 or newer
+- GPU: NVIDIA GTX970 or better
+- Router: 5GHz, Wi-Fi 5
+- Headset: Meta Quest 2, 3, or Pro
+
+**Recommended Setup:**
+- Processor: Intel Core i5-4590/AMD FX 8350 or better
+- Memory: 16 GB RAM
+- GPU: NVIDIA RTX2070 or better
+- Internet: Broadband connection
+- Router: Wi-Fi 6 or 6E
+- Wired network connection for the computer
+
+🙏 **A Heartfelt Thank You to Our Community**
+The journey with OculusKiller has been nothing short of remarkable, thanks to your unwavering support and enthusiasm. As we pivot to embrace new technologies like Steam Link, we want to express our deepest gratitude to everyone who downloaded, used, and contributed to OculusKiller and its ReVamped edition.
+
+Your engagement and feedback were the lifeblood of this project, driving us to innovate and improve continuously. We are immensely thankful to our dedicated team, contributors, and users for their invaluable input and support.
+
+🗃 **Archiving the Repository**
+While we step into this new phase, the OculusKiller repository will be archived but remain accessible for historical reference and any future needs. This marks not an end, but a transformation, as we continue to push the boundaries of virtual reality experiences.
+
+🌟 **Thank You Again**
+Your support has been the cornerstone of OculusKiller's success. We look forward to your continued engagement as we explore new horizons in VR technology.
+
+With appreciation and excitement for the future,
+
+**The Oculus Killer Team** 🚀
+
+
 # Oculus Killer 🚀
 
 Oculus Killer has evolved! Now more efficient and user-friendly, it focuses on enhancing your VR experience by terminating unnecessary Oculus processes and seamlessly launching SteamVR. This latest version is a leap forward, featuring a modular design, smoother and faster performance, and an advanced logging system for better error tracking and process monitoring.
